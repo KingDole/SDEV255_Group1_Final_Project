@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Front End</title>
+    <script src="scripts/create_course.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="/index.html">All Courses</a>
+        <a href="/add_course.html">Add/Drop Course</a>
+        <a href="/schedule.html">Current Schedule</a>
+        <a href="/create_course.html">Course Management</a>
+    </nav>
+    <h1>Manage Courses</h1>
+    <form>
+        <div>
+            <label for="courseID">ID:</label>
+            <input type="text" id="courseID"></input>
+        </div>
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title"></input>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" id="description">
+        </div>
+        <div>
+            <label for="subjectArea">Subject Area:</label>
+            <input type="text" id="subjectArea"></input>
+        </div>
+        <div>
+            <label for="credits">Credits:</label>
+            <input type="number" min="1" max="5" id="credits">
+        </div>
+        <div>
+            <input type="button" id="addBtn" value="Add Course">
+        </div>
+        <div id="error"></div>
+    </form>
+
+</body>
+</html>
