@@ -7,5 +7,5 @@ addEventListener("DOMContentLoaded", async function() {
         html += `<li>${course.title}</li>`
     }
 
-    document.querySelector("#list_of_courses")
+    document.querySelector("#list_of_courses").innerHTML = html
 })
