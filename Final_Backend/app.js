@@ -58,7 +58,7 @@ router.post("/courses", async (req,res) => {
 
 //update is to update an existing record/resource/database entry.. it uses a put request
 router.put("/courses/:id", async(req,res) => {
-    //first we need to find and update the song the front end wants us to update to do this we need to request the id of the song from the request and then find it in the database and update it
+    //first we need to find and update the course the front end wants us to update to do this we need to request the id of the course from the request and then find it in the database and update it
     try {
         const course = req.body
         await Course.updateOne({_id: req.params.id}, course)
@@ -82,9 +82,9 @@ router.delete("/courses/:id", function(req,res) {
     })
 })
 
-//all requests the usually use an API start wih /api... so the url would be localhost:3000/api/songs
+//all requests the usually use an API start wih /api... so the url would be localhost:3000/api/courses
 app.use("/api", router)
 app.get("/", (req, res) => {
-  res.redirect("/api");
+  res.redirect("/api/index");
 });
 app.listen(3000)
