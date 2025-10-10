@@ -31,6 +31,11 @@ router.post("/users", async(req,res) =>{
         res.status(400).json({error: "Missing username or password"})
     }
 
+    const existingUser = await User.findOne({ username: req.body.username })
+    if (existingUser) {
+        return res.status(409).json({ error: "Username already exists"})
+    }
+
     const newUser = await new User({
         username: req.body.username,
         password: req.body.password,
