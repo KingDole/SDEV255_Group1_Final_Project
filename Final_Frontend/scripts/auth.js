@@ -8,6 +8,7 @@ class Auth {
 
     validateAuth (auth) {
         if (auth != 1) {
+            console.log(window.location)
             window.location.replace("https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/login.html")
         }
         else {
