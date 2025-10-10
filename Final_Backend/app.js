@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
 });
 
 //Create a new user
-router.post("/user", async(req,res) =>{
+router.post("/users", async(req,res) =>{
     if(!req.body.username || !req.body.password) {
         res.status(400).json({error: "Missing username or password"})
     }
