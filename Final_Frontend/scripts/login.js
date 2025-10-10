@@ -14,7 +14,7 @@ async function login(username,password) {
     }
 
     //send the login post request to the backend
-    const response = await fetch("/api/auth/", {
+    const response = await fetch("/api/auth", {
         method: "POST",
         headers: {
             "Content-Type" : "application/json"
