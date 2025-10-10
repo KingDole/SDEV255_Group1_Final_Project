@@ -93,7 +93,7 @@ router.get("/status", async(req,res) => {
     try {
         const decoded = jwt.decode(token,secret)
         //send back all username and status fields to the user or front end
-        let users = User.find({}, "username status")
+        let users = await User.find({}, "username status")
         res.json(users)
     }
     catch (ex) {
@@ -129,7 +129,6 @@ router.post("/courses", async (req,res) => {
         const course = await new Course(req.body)
         await course.save()
         res.status(201).json(course)
-        res.sendStatus(204)
     }
     catch (err) {
         res.status(400).send("B")
