@@ -42,7 +42,5 @@ async function addUser() {
     }
     else {
         document.querySelector("#error").innerHTML = "Registration failed."
-    }
-    //redirect
-    window.location.replace("https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/login.html")
+    }    
 }
