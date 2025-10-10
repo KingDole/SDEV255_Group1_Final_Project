@@ -163,7 +163,7 @@ router.delete("/courses/:id", function(req,res) {
 
 //all requests the usually use an API start wih /api... so the url would be localhost:3000/api/courses
 app.use("/api", router)
-// app.get("/", (req, res) => {
-//   res.redirect("/api/index");
-// });
+app.get("/", (req, res) => {
+  res.redirect("https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html");
+});
 app.listen(3000)
