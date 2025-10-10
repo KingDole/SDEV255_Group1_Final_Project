@@ -14,7 +14,8 @@ async function login(username,password) {
     }
 
     //send the login post request to the backend
-    const response = await fetch("/api/auth", {
+    const backendURL = "https://sdev255-group1-final-project.onrender.com"
+    const response = await fetch(`${backendURL}/api/auth`, {
         method: "POST",
         headers: {
             "Content-Type" : "application/json"
