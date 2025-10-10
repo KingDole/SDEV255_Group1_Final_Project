@@ -166,6 +166,7 @@ app.use("/api", router)
 app.get("/", (req, res) => {
   res.redirect("https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html");
 });
+console.log("Initializing server...")
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
 })
