@@ -12,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 const router = express.Router();
+const secret = "supersecret"
 
 //Render stuff
 router.get("/", async (req, res) => {
