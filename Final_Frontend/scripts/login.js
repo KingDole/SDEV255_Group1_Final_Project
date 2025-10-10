@@ -35,7 +35,7 @@ async function login(username,password) {
         localStorage.setItem("uname", uname)
         localStorage.setItem("auth", auth)
         //redirect
-        window.location.replace("/index.html")
+        window.location.replace("https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html")
     }
 
     else {
