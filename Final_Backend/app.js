@@ -3,6 +3,7 @@ const Course = require("./models/course");
 var cors = require('cors');
 const jwt = require('jwt-simple');
 const User = require("./models/users");
+const Role = require("./models/role");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -98,6 +99,18 @@ router.get("/status", async(req,res) => {
     }
     catch (ex) {
         res.status(401).json({error: "invalid jwt"})
+    }
+})
+
+//Get a list of all roles in the database
+router.get("/roles", async (req,res) =>{
+    try {
+        const roles = await Role.find({})
+        res.json(roles)
+        console.log(roles)
+    }
+    catch (err) {
+        console.log(err)
     }
 })
 
