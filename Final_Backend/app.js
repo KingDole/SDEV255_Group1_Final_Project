@@ -28,26 +28,26 @@ router.get("/", async (req, res) => {
 //Create a new user
 router.post("/users", async(req,res) =>{
     if(!req.body.username || !req.body.password) {
-        res.status(400).json({error: "Missing username or password"})
+        return res.status(400).json({error: "Missing username or password"})
     }
 
-    const existingUser = await User.findOne({ username: req.body.username })
-    if (existingUser) {
-        return res.status(409).json({ error: "Username already exists"})
-    }
-
-    const newUser = await new User({
-        username: req.body.username,
-        password: req.body.password,
-        role: req.body.role
-    })
-    
     try {
+        const existingUser = await User.findOne({ username: req.body.username })
+        if (existingUser) {
+            return res.status(409).json({ error: "Username already exists"})
+        }
+
+        const newUser = await new User({
+            username: req.body.username,
+            password: req.body.password,
+            role: req.body.role
+        })
+    
         await newUser.save()
-        res.status(201).json({message: "User created successfully"})
-    }
-    catch(err) {
-        res.status(400).json({error: "Registration Failed"})
+        return res.status(201).json({message: "User created successfully"})
+    } 
+    catch (err) {
+        return res.status(400).json({error: "Registration Failed"})
     }
 })
 
