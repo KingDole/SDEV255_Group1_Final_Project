@@ -47,6 +47,10 @@ router.post("/users", async(req,res) =>{
         return res.status(201).json({message: "User created successfully"})
     } 
     catch (err) {
+        if (err.code === 11000) {
+            return res.status(409).json({ error: "Username already exists (duplicate key)" });
+        }
+        
         return res.status(400).json({error: "Registration Failed"})
     }
 })
