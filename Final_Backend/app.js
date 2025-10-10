@@ -34,12 +34,12 @@ router.post("/users", async(req,res) =>{
     const newUser = await new User({
         username: req.body.username,
         password: req.body.password,
-        status: req.body.status
+        role: req.body.role
     })
     
     try {
         await newUser.save()
-        res.sendStatus(201)
+        res.sendStatus(201).json({message: "User created successfully"})
     }
     catch(err) {
         res.status(400).send(err)
