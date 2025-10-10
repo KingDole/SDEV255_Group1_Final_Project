@@ -5,7 +5,7 @@ const jwt = require('jwt-simple');
 const User = require("./models/users");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 // Middleware that parses HTTP requests with JSON body
@@ -167,4 +167,6 @@ app.use("/api", router)
 app.get("/", (req, res) => {
   res.redirect("https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html");
 });
-app.listen(3000)
+app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`)
+})
