@@ -35,12 +35,14 @@ async function addUser() {
 
     if(response.ok){
         const results = await response.json()
+        document.querySelector("#error").innerHTML = "";
         alert("User added successfully.")
 
         //reset the form after user is successfully added
         document.querySelector("form").reset()
     }
     else {
-        document.querySelector("#error").innerHTML = "Registration failed."
+        const errorData = await response.json()
+        document.querySelector("#error").innerHTML = errorData.error || "Registration failed."
     }    
 }
