@@ -39,7 +39,7 @@ router.post("/users", async(req,res) =>{
     
     try {
         await newUser.save()
-        res.sendStatus(201).json({message: "User created successfully"})
+        res.status(201).json({message: "User created successfully"})
     }
     catch(err) {
         res.status(400).json({error: "Registration Failed"})
