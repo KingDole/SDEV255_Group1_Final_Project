@@ -1,7 +1,7 @@
 let token 
 
 window.onload = function() {
-    document.querySelector("loginBtn").addEventListener("click", function() {
+    document.querySelector("#loginBtn").addEventListener("click", function() {
         const username = document.querySelector("#username").value
         const password = document.querySelector("#password").value
         login(username,password)
