@@ -23,7 +23,7 @@ async function addCourse() {
 
     if(response.ok){
         const results = await response.json()
-        alert("Added course with ID of" + results.title)
+        alert("Added course with Title of " + results.title)
 
         //reset the form after song is successfully added
         document.querySelector("form").reset()
