@@ -20,12 +20,9 @@ function loadNavbar() {
         `;
     }
 
-    //Add logout button
-    navbarHtml += `<button id="logout" style="float: right;">Logout</button>`
-
     // Inject navbar into the <nav> tag
     const nav = document.querySelector("nav");
     if (nav) {
-        nav.innerHTML = navbarHtml;
+        nav.innerHTML += navbarHtml;
     }
 }
