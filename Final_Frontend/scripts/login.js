@@ -23,18 +23,21 @@ async function login(username,password) {
         body: JSON.stringify(login_cred)
     })
 
-    if (response.ok) {
+    if (response.ok) {        
         //take the token and save it to storage
         const tokenResponse = await response.json()
         token = tokenResponse.token
         uname = tokenResponse.username2
+        urole = tokenResponse.role2
         auth = tokenResponse.auth
         console.log(token)
 
         //save it
         localStorage.setItem("token", token)
         localStorage.setItem("uname", uname)
+        localStorage.setItem("urole", urole)
         localStorage.setItem("auth", auth)
+
         //redirect
         window.location.replace("https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html")
     }

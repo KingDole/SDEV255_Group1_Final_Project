@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Website</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="./scripts/current_schedule.js"></script>
+    <script src="./scripts/script.js"></script>
     <script src="./scripts/navbars.js"></script>
     <script defer src="./scripts/auth.js"></script>
     <script defer src="./scripts/init.js"></script>
 </head>
 
 <body>
-
     <nav>
         <!-- <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html">All Courses</a>
         <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/add_course.html">Add/Drop Course</a>
@@ -21,7 +19,11 @@
         <button id="logout" style="float: right;">Logout</button> -->
     </nav>
 
-    <h1>Current Schedule</h1>
+    <h1>Courses</h1>
+
+    <ul>
+        <div id="list_of_courses"></div>
+    </ul>
 
 </body>
 
