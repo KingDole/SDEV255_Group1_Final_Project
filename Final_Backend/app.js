@@ -70,29 +70,31 @@ router.post("/auth", async(req,res) => {
         res.status(401).json({error:"Bad Username"})
     }
         //check to see if the user's password matches the requests password
-        else {
-            if (user.password != req.body.password) {
+    else {
+        if (user.password != req.body.password) {
                 res.status(401).json({error: "Bad Password"})
-            }
-            //successful login
-            else {
-                //create a token that is encoded with the jwt library, and send back the username. This will be important later.
-                //we also will send back as part of the token that you are currently authorized
-                //we could do this with a boolean or a number value i.e. if auth = 0 you are not authorized
-                //if auth = 1 you are authorized
-                username2 = user.username
-                const token = jwt.encode({username: user.username},secret)
-                const auth = 1
-
-                //respond with the token
-                res.json({
-                    username2,
-                    token:token,
-                    auth:auth
-                })
-            }
         }
-    })
+        //successful login
+        else {
+            //create a token that is encoded with the jwt library, and send back the username. This will be important later.
+            //we also will send back as part of the token that you are currently authorized
+            //we could do this with a boolean or a number value i.e. if auth = 0 you are not authorized
+            //if auth = 1 you are authorized
+            username2 = user.username
+            role2 = user.role
+            const token = jwt.encode({username: user.username},secret)
+            const auth = 1
+
+            //respond with the token
+            res.json({
+                username2,
+                role2,
+                token:token,
+                auth:auth
+            })
+        }
+    }
+})
 //check status of user with a valid token, see if it matches the front end token
 router.get("/status", async(req,res) => {
     if(!req.headers["x-auth"]) {
