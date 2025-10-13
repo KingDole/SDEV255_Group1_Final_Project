@@ -9,7 +9,6 @@ function loadNavbar() {
         <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html">All Courses</a>
         <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/add_course.html">Add Course</a>
         <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/current_schedule.html">Current Schedule</a>
-        <button id="logout" style="float: right;">Logout</button>
     `;
 
     //Change navbar if the role is Teacher
@@ -18,13 +17,21 @@ function loadNavbar() {
             <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html">All Courses</a>
             <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/current_schedule.html">Current Schedule</a>
             <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/create_course.html">Course Management</a>
-            <button id="logout" style="float: right;">Logout</button>
         `;
     }
+
+    //Add logout button
+    navbarHtml += `<button id="logout" style="float: right;">Logout</button>`
 
     // Inject navbar into the <nav> tag
     const nav = document.querySelector("nav");
     if (nav) {
         nav.innerHTML = navbarHtml;
     }
+
+    const auth = new Auth()
+
+    document.querySelector("#logout").addEventListener("click", (e) => {
+        auth.logOut()
+    })
 }
