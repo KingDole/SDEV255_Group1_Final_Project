@@ -28,10 +28,4 @@ function loadNavbar() {
     if (nav) {
         nav.innerHTML = navbarHtml;
     }
-
-    const auth = new Auth()
-
-    document.querySelector("#logout").addEventListener("click", (e) => {
-        auth.logOut()
-    })
 }
