@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", loadNavbar);
 
 function loadNavbar() {
     //Get role from localStorage
-    const role = localStorage.getItem("role");
+    const role = localStorage.getItem("urole");
 
     //Make Student navbar the default
     let navbarHtml = `
