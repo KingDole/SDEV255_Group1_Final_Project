@@ -28,6 +28,19 @@ async function addCourse() {
         document.querySelector("form").reset()
     }
     else {
-        document.querySelector("#error").innerHTML = "Cannot add course"
+        let errorMsg = "Failed to add course."
+        try {
+            const errorData = await response.json()
+            if (errorData.error) {
+                errorMsg += ` ${errorData.error}`
+            } else if (errorData.message) {
+                errorMsg += ` ${errorData.message}`
+            }
+        } catch (parseErr) {
+            errorMsg += " An unknown error occurred."
+        }
+
+        document.querySelector("#error").innerHTML = errorMsg
+        console.error("Add course failed:", errorMsg)
     }
 }
