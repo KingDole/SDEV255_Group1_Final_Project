@@ -167,7 +167,7 @@ router.post("/courses", async (req,res) => {
         res.status(201).json(course)
     }
     catch (err) {
-        res.status(400).send("B")
+        res.status(400).json({error: err.message || "Invalid course data"})
     }
 })
 
