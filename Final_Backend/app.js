@@ -185,7 +185,69 @@ router.delete("/courses/:id", function(req,res) {
     })
 })
 
-//all requests the usually use an API start wih /api... so the url would be localhost:3000/api/courses
+//When a student adds a class, add that to a schedule associated with that student on the database rather than 
+//local storage so the information is loaded and saved properly between logouts
+//Add the class to the schedule. Check that it's a valid user, is a student, and the class isn't already added.
+//Limit students to 4 total classes
+router.post("/users/:username/schedule", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    const courseId = req.body.courseId;
+
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    if (user.role !== "Student") {
+      return res.status(403).json({ error: "Only students can have a schedule" });
+    }
+
+    if (user.schedule.includes(courseId)) {
+      return res.status(409).json({ error: "Course already in schedule" });
+    }
+
+    if (user.schedule.length >= 4) {
+      return res.status(400).json({ error: "Course limit reached (4)" });
+    }
+
+    user.schedule.push(courseId);
+    await user.save();
+
+    res.status(200).json({ message: "Course added to schedule" });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+//Get user's schedule for the schedule page
+router.get("/users/:username/schedule", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username })
+      .populate("schedule");
+
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    res.json(user.schedule);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+//Drop classes from the schedule
+router.delete("/users/:username/schedule/:courseId", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    user.schedule = user.schedule.filter(id => id.toString() !== req.params.courseId);
+    await user.save();
+
+    res.status(200).json({ message: "Course removed" });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+//Direct to the index page
 app.use("/api", router)
 app.get("/", (req, res) => {
   res.redirect("https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html");
