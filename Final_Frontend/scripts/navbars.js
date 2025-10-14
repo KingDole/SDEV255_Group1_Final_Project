@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", loadNavbar);
 
+const auth = new Auth()
+document.querySelector("#logout").addEventListener("click", (e) => {
+    auth.logOut()
+})
+
 function loadNavbar() {
     //Get role from localStorage
     const role = localStorage.getItem("urole")
