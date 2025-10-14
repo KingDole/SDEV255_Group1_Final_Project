@@ -193,25 +193,33 @@ router.put("/courses/:id", async(req,res) => {
     //first we need to find and update the course the front end wants us to update to do this we need to request the id of the course from the request and then find it in the database and update it
     try {
         const course = req.body
-        await Course.updateOne({_id: req.params.id}, course)
+        const result = await Course.updateOne({_id: req.params.id}, course)
+
+        if (result.matchedCount === 0) {
+            return res.status(404).json({ error: "Course not found" })
+        }
+
+        res.status(200).json({ message: "Course updated" })
     }
     catch (err) {
-        res.status(400).send("C")
+        console.error(err)
+        res.status(400).json({ error: "Failed to update course" })
     }
 })
 
-router.delete("/courses/:id", function(req,res) {
-    Course.deleteOne({_id: req.params.id}, function(err, result) {
-        if (err) {
-            res.status(400).send(err)
+router.delete("/courses/:id", async (req,res) => {
+    try {
+        const result = await Course.deleteOne({ _id: req.params.id });
+
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ error: "Course not found" });
         }
-        else if (result.n === 0) {
-            res.sendStatus(404)
-        }
-        else {
-            res.sendStatus(204)
-        }
-    })
+
+        res.status(200).json({ message: "Course deleted" });
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ error: "Failed to delete course" });
+    }
 })
 
 //When a student adds a class, add that to a schedule associated with that student on the database rather than 
