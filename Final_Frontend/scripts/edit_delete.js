@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     //Build list of courses created by user
     const courses = await response.json()
     renderCourses(courses)
-});
+})
 
 //Function to build the list of classes created by the active user
 function renderCourses(courses) {
@@ -140,14 +140,15 @@ async function saveEdit(courseDiv) {
 
         setupCourseButtons(); // Rebind events
     } else {
-        alert("Failed to save changes.")
+        const errorData = await response.json()
+        alert("Failed to save changes: " + (errorData.error || response.statusText))
     }
 }
 // Function to delete a course.
 async function deleteCourse(courseId) {
     const token = localStorage.getItem("token")
 
-    if (!confirm("Are you sure you want to delete this course?")) return;
+    if (!confirm("Are you sure you want to delete this course?")) return
 
     const response = await fetch(`https://sdev255-group1-final-project.onrender.com/api/courses/${courseId}`, {
         method: "DELETE",
@@ -160,6 +161,7 @@ async function deleteCourse(courseId) {
         alert("Course deleted")
         location.reload()
     } else {
-        alert("Failed to delete course")
+        const errorData = await response.json()
+        alert("Failed to delete course: " + (errorData.error || response.statusText))
     }
 }
