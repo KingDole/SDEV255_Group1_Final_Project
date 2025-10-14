@@ -1,5 +1,6 @@
 class Auth {
 
+    //Hide content from unauthorized users and direct them to the login page
     constructor() {
         document.querySelector("body").style.display = "none"
         const auth = localStorage.getItem("auth")
@@ -16,6 +17,7 @@ class Auth {
         }
     }
 
+    //Clear out all localStorage
     logOut() {
         localStorage.removeItem("auth")
         localStorage.removeItem("token")

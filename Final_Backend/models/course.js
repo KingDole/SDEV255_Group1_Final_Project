@@ -5,7 +5,8 @@ const Course = db.model("Course", {
    title:       { type: String, required: true },
    description: { type: String, required: true },
    subjectArea: { type: String, required: true },
-   credits:     { type: Number, required: true }
+   credits:     { type: Number, required: true },
+   creator:     { type: db.Schema.Types.ObjectId, ref: 'User'}
 });
 
 module.exports = Course;

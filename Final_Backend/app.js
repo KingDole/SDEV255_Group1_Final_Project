@@ -150,7 +150,19 @@ router.get("/courses/:id", async (req,res) => {
 
 router.post("/courses", async (req,res) => {
     try {
-        const course = await new Course(req.body)
+        const token = req.headers["x-auth"]
+        const decoded = jwt.decode(token, secret)
+        const user = await User.findOne({ username: decoded.username })
+
+        if (!user || user.role !== "Teacher") {
+            return res.status(403).json({ error: "Only teachers can create courses" })
+        }
+
+        const course = new Course({
+            ...req.body,
+        creator: user._id
+        })
+
         await course.save()
         res.status(201).json(course)
     }
@@ -158,6 +170,23 @@ router.post("/courses", async (req,res) => {
         res.status(400).send("B")
     }
 })
+
+//Grab all courses created by the logged in Teacher
+router.get("/teachers/:username/courses", async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.params.username })
+
+        if (!user || user.role !== "Teacher") {
+            return res.status(403).json({ error: "Invalid teacher" })
+        }
+
+        const courses = await Course.find({ creator: user._id })
+        res.json(courses)
+    } catch (err) {
+        res.status(500).json({ error: "Server error" })
+    }
+})
+
 
 //update is to update an existing record/resource/database entry.. it uses a put request
 router.put("/courses/:id", async(req,res) => {

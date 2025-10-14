@@ -14,7 +14,6 @@ function loadNavbar() {
 
     let teacherNavbar = `
         <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html">All Courses</a>
-        <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/current_schedule.html">Current Schedule</a>
         <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/create_course.html">Create Course</a>
         <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/edit_delete.html">Course Management</a>
         <button id="logout" style="float: right;">Logout</button>
@@ -29,5 +28,5 @@ function loadNavbar() {
         nav.innerHTML = studentNavbar
     }
 
-    document.dispatchEvent(new Event("navbar-ready"));
+    document.dispatchEvent(new Event("navbar-ready"))
 }

@@ -2,6 +2,7 @@ addEventListener("DOMContentLoaded", async function() {
     const response = await fetch("https://sdev255-group1-final-project.onrender.com/api/courses")
     const courses = await response.json()
 
+    //Build list of classes and add the "Add Class" button 
     let html = ""
     for (let course of courses) {
         html += `
@@ -14,6 +15,7 @@ addEventListener("DOMContentLoaded", async function() {
 
     document.querySelector("#list_of_courses").innerHTML = html
 
+    //Add event listeners to each button so the correct class is added on click
     const buttons = document.querySelectorAll(".add-btn")
     buttons.forEach(button => {
         button.addEventListener("click", () => {
@@ -24,7 +26,7 @@ addEventListener("DOMContentLoaded", async function() {
     })
 })
 
-//Store added classes to localStorage
+//Store added classes to the database referenced with the current users uname so the schedule isn't lost on logout
 function addToSchedule(course) {
     const username = localStorage.getItem("uname");
     const token = localStorage.getItem("token");
