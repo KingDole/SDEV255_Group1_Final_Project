@@ -12,10 +12,12 @@ async function addCourse() {
         credits: document.querySelector("#credits").value
     }
 
+    const token = localStorage.getItem("token")
     const response = await fetch("https://sdev255-group1-final-project.onrender.com/api/courses", {
         method: "POST",
         headers: {
-            "Content-Type" : "application/json"
+            "Content-Type" : "application/json",
+            "x-auth": token
         },
         body: JSON.stringify(course)
     })
