@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="./style.css">
     <script defer src="./scripts/login.js"></script>
 </head>
@@ -11,20 +12,20 @@
 <body>
 
     <nav>
-        <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html">All Courses</a>
-        <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/add_course.html">Add/Drop Course</a>
-        <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/current_schedule.html">Current Schedule</a>
-        <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/create_course.html">Course Management</a>
+        <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/index.html"><i class="fa-solid fa-book-open"></i>All Courses</a>
+        <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/add_course.html"><i class="fa-solid fa-plus-circle"></i>Add/Drop Course</a>
+        <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/current_schedule.html"><i class="fa-solid fa-calendar-check"></i>Current Schedule</a>
+        <a href="https://kingdole.github.io/SDEV255_Group1_Final_Project/Final_Frontend/create_course.html"><i class="fa-solid fa-chalkboard-user"></i>Course Management</a>
     </nav>
 
     <form id="login" autocomplete="off">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username">
+        <div class="input-group">
+            <label for="username"><i class="fa-solid fa-user"></i>Username:</label>
+            <input type="text" id="username" placeholder="Enter your username">
         </div>
         <div>
-            <label for="password">Password:</label>
-            <input type="text" id="password">
+            <label for="password"><i class="fa-solid fa-lock"></i> Password:</label>
+            <input type="text" id="password" placeholder="Enter your password">
         </div>
         <button id="loginBtn" type="button">Login</button>
         <p id="errorMsg"></p>
