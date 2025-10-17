@@ -6,7 +6,7 @@ addEventListener("DOMContentLoaded", async function() {
     let html = ""
     for (let course of courses) {
         html += `
-            <li>${course.title} - <button class="add-btn" data-id="${course._id}" style="float: right;">Add Class</button>
+            <li class="course-item">${course.title} - <button class="add-btn" data-id="${course._id}" style="float: right;">Add Class</button>
                 <p>${course.description}</p>
                 <p>${course.subjectArea}</p>
                 <p>${course.credits} credits</p>

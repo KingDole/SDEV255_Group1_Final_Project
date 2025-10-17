@@ -8,7 +8,7 @@ async function getRoles(){
     const response = await fetch("https://sdev255-group1-final-project.onrender.com/api/roles")
     if(response.ok) {
         const roles = await response.json()
-        let html = "Student"
+        let html = ""
         for (let role of roles) {
             html += `<option value="${role.title}">${role.title}</option>`
         }
